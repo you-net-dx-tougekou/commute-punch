@@ -1,0 +1,20 @@
+:root { --ok: #1e8e3e; --warn: #f9ab00; --error: #d93025; --in: #1a73e8; --out: #5f6368; --bg: #ffffff; --fg: #202124; }
+@media (prefers-color-scheme: dark) { :root { --bg: #202124; --fg: #e8eaed; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: system-ui, -apple-system, "Hiragino Sans", sans-serif; }
+main { max-width: 480px; margin: 0 auto; padding: 24px 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+h1 { font-size: 24px; }
+.lead { font-size: 18px; line-height: 1.6; }
+button { width: 100%; border: 0; border-radius: 16px; font-size: 20px; padding: 16px; margin: 8px 0; cursor: pointer; }
+button:disabled { opacity: 0.5; }
+.primary { background: var(--in); color: #fff; }
+.secondary { background: transparent; color: var(--fg); border: 2px solid currentColor; }
+.punch { font-size: 40px; font-weight: bold; padding: 48px 16px; color: #fff; }
+.punch.in { background: var(--in); }
+.punch.out { background: var(--out); }
+.result { border-radius: 16px; padding: 32px 16px; text-align: center; color: #fff; }
+.result.ok { background: var(--ok); }
+.result.warn { background: var(--warn); color: #202124; }
+.result.error { background: var(--error); }
+.result-title { font-size: 26px; font-weight: bold; margin: 0 0 12px; }
+.busy { text-align: center; font-size: 18px; }

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="登下校">
+  <title>登下校</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section id="view-register" hidden>
+      <h1>スマホの登録</h1>
+      <p id="register-name" class="lead"></p>
+      <button id="btn-register" class="primary">登録する</button>
+    </section>
+
+    <section id="view-guide" hidden>
+      <h1>登録できました</h1>
+      <p class="lead">このページを<strong>ホーム画面に追加</strong>してください。次からはアイコンを押すだけで打刻できます。</p>
+      <ol>
+        <li><b>iPhone</b>:画面下の共有ボタン(□に↑)→「ホーム画面に追加」</li>
+        <li><b>Android</b>:右上の「︙」→「ホーム画面に追加」</li>
+      </ol>
+      <button id="btn-guide-done" class="secondary">追加しました</button>
+    </section>
+
+    <section id="view-punch" hidden>
+      <button id="btn-in" class="punch in">登校</button>
+      <button id="btn-out" class="punch out">下校</button>
+    </section>
+
+    <section id="view-unregistered" hidden>
+      <h1>このスマホは未登録です</h1>
+      <p class="lead">先生から受け取った登録用QRを、スマホのカメラで読み取ってください。</p>
+    </section>
+
+    <section id="view-result" hidden>
+      <div id="result-box" class="result">
+        <p id="result-title" class="result-title"></p>
+        <p id="result-detail"></p>
+      </div>
+      <button id="btn-back" class="secondary">戻る</button>
+    </section>
+
+    <p id="busy" class="busy" hidden>処理しています…</p>
+  </main>
+  <script src="config.js"></script>
+  <script src="lib.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
