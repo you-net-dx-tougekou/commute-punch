@@ -42,8 +42,25 @@
     return { tone: 'warn', title: title, detail: '校舎の範囲外のため、先生の確認待ちになりました。' };
   }
 
+  // 送り直しても二重に処理されないよう、ボタン1回ごとに付ける受付番号(16バイト = 32文字の16進)
+  function requestIdFrom(bytes) {
+    return Array.prototype.map.call(bytes, function (b) { return ('0' + (b & 0xff).toString(16)).slice(-2); }).join('');
+  }
+
+  // attempt() が失敗したら delays の順に待って送り直す(合計 delays.length + 1 回)。wait(ms) は待つ処理
+  function retrying(attempt, delays, wait) {
+    function run(i) {
+      return attempt().catch(function (err) {
+        if (i >= delays.length) throw err;
+        return wait(delays[i]).then(function () { return run(i + 1); });
+      });
+    }
+    return run(0);
+  }
+
   var api = { tokenFromHash: tokenFromHash, regCodeFromSearch: regCodeFromSearch, resolveToken: resolveToken,
-    deviceKind: deviceKind, needsRetry: needsRetry, geoErrorMessage: geoErrorMessage, resultView: resultView };
+    deviceKind: deviceKind, needsRetry: needsRetry, geoErrorMessage: geoErrorMessage, resultView: resultView,
+    requestIdFrom: requestIdFrom, retrying: retrying };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.PunchLib = api;
 })(this);
