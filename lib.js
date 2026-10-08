@@ -58,9 +58,29 @@
     return run(0);
   }
 
+  // 日本時間での「年月日」と「時:分:秒」。端末のタイムゾーン設定に関係なくJSTで表示する
+  function formatClock(date) {
+    var p = {};
+    new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Tokyo', year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23',
+    }).formatToParts(date).forEach(function (x) { p[x.type] = x.value; });
+    return {
+      date: Number(p.year) + '年' + Number(p.month) + '月' + Number(p.day) + '日',
+      time: p.hour + ':' + p.minute + ':' + p.second,
+    };
+  }
+
+  // 位置情報の状態表示。state = {kind:'checking'|'ok'|'error', accuracy?}
+  function gpsStatusView(state) {
+    if (state.kind === 'ok') return { tone: 'ok', text: '位置情報：取得できています（誤差 ±' + Math.round(state.accuracy) + 'm）' };
+    if (state.kind === 'error') return { tone: 'error', text: '位置情報：取得できません（オンにしてください）' };
+    return { tone: 'muted', text: '位置情報：確認中…' };
+  }
+
   var api = { tokenFromHash: tokenFromHash, regCodeFromSearch: regCodeFromSearch, resolveToken: resolveToken,
     deviceKind: deviceKind, needsRetry: needsRetry, geoErrorMessage: geoErrorMessage, resultView: resultView,
-    requestIdFrom: requestIdFrom, retrying: retrying };
+    requestIdFrom: requestIdFrom, retrying: retrying, formatClock: formatClock, gpsStatusView: gpsStatusView };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.PunchLib = api;
 })(this);

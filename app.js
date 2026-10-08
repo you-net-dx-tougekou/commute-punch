@@ -82,11 +82,48 @@
     }).then(function () { setBusy(false); });
   }
 
+  function tickClock() {
+    var c = lib.formatClock(new Date());
+    $('clock-date').textContent = c.date;
+    $('clock-time').textContent = c.time;
+  }
+
+  function setGps(state) {
+    var v = lib.gpsStatusView(state);
+    $('gps').textContent = v.text;
+    $('gps').className = 'gps ' + v.tone;
+  }
+
   function startPunch(token) {
     $('btn-in').onclick = function () { punch('in', '登校', token); };
     $('btn-out').onclick = function () { punch('out', '下校', token); };
     $('btn-back').onclick = function () { show('view-punch'); };
     show('view-punch');
+
+    // 時計(秒ごとに更新)
+    tickClock();
+    if (!startPunch.clockTimer) startPunch.clockTimer = setInterval(tickClock, 1000);
+
+    // 位置情報の状態を常時表示(打刻前にGPSを温めておく役割も兼ねる)
+    setGps({ kind: 'checking' });
+    if (navigator.geolocation) {
+      if (startPunch.geoWatch != null) navigator.geolocation.clearWatch(startPunch.geoWatch);
+      startPunch.geoWatch = navigator.geolocation.watchPosition(
+        function (pos) { setGps({ kind: 'ok', accuracy: pos.coords.accuracy }); },
+        function () { setGps({ kind: 'error' }); },
+        GEO_OPTIONS,
+      );
+    } else {
+      setGps({ kind: 'error' });
+    }
+
+    // 校舎と登録者名はトークンでサーバーに問い合わせる(ホーム画面から開くと名前が分からないため)
+    post({ action: 'info', token: token }).then(function (res) {
+      if (res && res.ok) {
+        $('campus').textContent = res.campus || '';
+        $('punch-name').textContent = res.name || '';
+      }
+    }, function () { /* 取れなくても打刻はできる。名前は空のまま */ });
   }
 
   function completeRegistration(code) {

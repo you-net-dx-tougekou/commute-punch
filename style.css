@@ -1,5 +1,5 @@
-:root { --ok: #1e8e3e; --warn: #f9ab00; --error: #d93025; --in: #1a73e8; --out: #5f6368; --bg: #ffffff; --fg: #202124; }
-@media (prefers-color-scheme: dark) { :root { --bg: #202124; --fg: #e8eaed; } }
+:root { --ok: #1e8e3e; --warn: #f9ab00; --error: #d93025; --in: #1a73e8; --out: #5f6368; --bg: #ffffff; --fg: #202124; --muted: #5f6368; }
+@media (prefers-color-scheme: dark) { :root { --bg: #202124; --fg: #e8eaed; --muted: #9aa0a6; } }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: system-ui, -apple-system, "Hiragino Sans", sans-serif; }
 main { max-width: 480px; margin: 0 auto; padding: 24px 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
@@ -18,3 +18,15 @@ button:disabled { opacity: 0.5; }
 .result.error { background: var(--error); }
 .result-title { font-size: 26px; font-weight: bold; margin: 0 0 12px; }
 .busy { text-align: center; font-size: 18px; }
+
+/* 打刻画面 */
+#view-punch { text-align: center; }
+.campus { text-align: left; margin: 0 0 8px; font-size: 16px; font-weight: bold; color: var(--muted); }
+.clock { display: flex; flex-direction: column; align-items: center; margin-bottom: 4px; }
+.clock-date { font-size: 18px; color: var(--muted); }
+.clock-time { font-size: 40px; font-weight: bold; font-variant-numeric: tabular-nums; letter-spacing: 1px; }
+.punch-name { margin: 4px 0 16px; font-size: 22px; font-weight: bold; }
+.gps { margin: 12px 0 0; font-size: 15px; }
+.gps.ok { color: var(--ok); }
+.gps.error { color: var(--error); }
+.gps.muted { color: var(--muted); }
