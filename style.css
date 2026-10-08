@@ -19,8 +19,10 @@ button:disabled { opacity: 0.5; }
 .result-title { font-size: 26px; font-weight: bold; margin: 0 0 12px; }
 .busy { text-align: center; font-size: 18px; }
 
-/* 打刻画面 */
-#view-punch { text-align: center; }
+/* 打刻画面: 上側(校舎・時計・氏名)は上に固定し、ボタン群は残りの空間の中央に置く */
+#view-punch { text-align: center; display: flex; flex-direction: column; min-height: calc(100vh - 48px); }
+#btn-in { margin-top: auto; }   /* ここから上に空きを作り、ボタン群を下側の中央へ */
+#gps { margin-bottom: auto; }   /* ボタン群の下にも同じ空きを作り、上下中央に */
 .campus { text-align: left; margin: 0 0 8px; font-size: 16px; font-weight: bold; color: var(--muted); }
 .clock { display: flex; flex-direction: column; align-items: center; margin-bottom: 4px; }
 .clock-date { font-size: 18px; color: var(--muted); }
