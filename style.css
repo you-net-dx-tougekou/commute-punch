@@ -9,7 +9,7 @@ button { width: 100%; border: 0; border-radius: 16px; font-size: 20px; padding: 
 button:disabled { opacity: 0.5; }
 .primary { background: var(--in); color: #fff; }
 .secondary { background: transparent; color: var(--fg); border: 2px solid currentColor; }
-.punch { font-size: 40px; font-weight: bold; padding: 48px 16px; color: #fff; }
+.punch { font-size: 40px; font-weight: bold; padding: 48px 16px; color: #fff; max-width: 340px; margin: 8px auto; }
 .punch.in { background: var(--in); }
 .punch.out { background: var(--out); }
 .result { border-radius: 16px; padding: 32px 16px; text-align: center; color: #fff; }
