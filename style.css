@@ -22,7 +22,7 @@ button:disabled { opacity: 0.5; }
 /* 打刻画面: 校舎・時計・氏名は上に固定。2つのボタンの境目を画面の縦中央に合わせ、GPSは下端に固定 */
 #view-punch { text-align: center; position: relative; min-height: calc(100vh - 48px); }
 .punch-actions { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); }
-#gps { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; }
+#gps { position: absolute; left: 0; right: 0; top: 100%; margin: 12px 0 0; }
 /* 画面の縦が短い端末(iPhone SE 等)では、ボタンを少し低くして名前と重ならないようにする */
 @media (max-height: 710px) { .punch { padding: 32px 16px; } }
 .campus { text-align: left; margin: 0 0 8px; font-size: 16px; font-weight: bold; color: var(--muted); }

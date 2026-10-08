@@ -73,7 +73,7 @@
 
   // 位置情報の状態表示。state = {kind:'checking'|'ok'|'error', accuracy?}
   function gpsStatusView(state) {
-    if (state.kind === 'ok') return { tone: 'ok', text: '位置情報：取得できています（誤差 ±' + Math.round(state.accuracy) + 'm）' };
+    if (state.kind === 'ok') return { tone: 'ok', text: '位置情報：取得できています' };
     if (state.kind === 'error') return { tone: 'error', text: '位置情報：取得できません（オンにしてください）' };
     return { tone: 'muted', text: '位置情報：確認中…' };
   }
