@@ -121,7 +121,7 @@
     post({ action: 'info', token: token }).then(function (res) {
       if (res && res.ok) {
         $('campus').textContent = res.campus || '';
-        $('punch-name').textContent = res.name || '';
+        $('punch-name').textContent = res.name ? res.name + ' さん' : '';
       }
     }, function () { /* 取れなくても打刻はできる。名前は空のまま */ });
   }
