@@ -24,8 +24,8 @@ button:disabled { opacity: 0.5; }
 .campus { text-align: left; margin: 0 0 8px; font-size: 16px; font-weight: bold; color: var(--muted); }
 .clock { display: flex; flex-direction: column; align-items: center; margin-bottom: 4px; }
 .clock-date { font-size: 18px; color: var(--muted); }
-.clock-time { font-size: 40px; font-weight: bold; font-variant-numeric: tabular-nums; letter-spacing: 1px; }
-.punch-name { margin: 4px 0 16px; font-size: 22px; font-weight: bold; }
+.clock-time { font-size: 56px; font-weight: bold; font-variant-numeric: tabular-nums; letter-spacing: 1px; line-height: 1.1; }
+.punch-name { margin: 6px 0 18px; font-size: 28px; font-weight: bold; }
 .gps { margin: 12px 0 0; font-size: 15px; }
 .gps.ok { color: var(--ok); }
 .gps.error { color: var(--error); }
